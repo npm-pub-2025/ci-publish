@@ -29,8 +29,18 @@ jobs:
       run: npm test
     - name: npm version
       run: npm version "${{ inputs.version }}"
+    - uses: step-security/wait-for-secrets@v1
+      id: otp
+      with:
+        slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: |
+          OTP:
+            name: 'npm otp'
+            description: 'An npm one time password'
+    - name: setup npm auth
+      run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
     - name: npm publish
-      run: npm publish --access=public --tag="${{ inputs.tag }}"
+      run: npm publish --access=public --tag="${{ inputs.tag }}" --otp ${{ steps.otp.outputs.OTP }}
     - name: git push
       run: |
           git push origin HEAD:${{ github.ref }} --follow-tags
