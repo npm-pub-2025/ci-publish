@@ -27,7 +27,6 @@ The most important security steps are:
 Before starting, make sure you have:
 - A GitHub repository with Actions enabled.
 - An npm account with 2FA turned on.
-- Permissions to publish your package.
 - A trusted team for approvals.
 
 
