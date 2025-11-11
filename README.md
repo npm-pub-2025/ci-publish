@@ -17,7 +17,7 @@ The most important security steps are:
 - Create a GitHub Environment for publishing.
 - Add required reviewers for approval to help prevent accidental or unauthorized releases.
 - Use a Granular Access Token (GAT) with 2FA required.
-- Store your token as a GitHub Environment secret and refresh it at least every 90 days.
+- Store your token as a GitHub Environment secret
 - Set up a workflow with permissions and OTP input.
 - Approve and provide your OTP when publishing. This step depends on a trusted third-party service.
 
