@@ -137,7 +137,7 @@ Go to the link, enter your OTP, and the publish will finish.
 This setup reflects one way of publishing safely from CI. You can change details to fit your project’s needs. For example:
 - You might skip reviewers for small teams or solo maintainers.
 - You can use a different OTP action if you prefer.
-- The publish order (npm first or GitHub first) is up to you.
+- The publish order (npm first or GitHub first) is up to you, use the appropriate trigger for your workflow (just never `pull_request_target`).
 - For extra security, consider using [harden-runner](https://github.com/step-security/harden-runner) or a similar endpoint protection tool for GitHub Actions runners. It helps control egress traffic and adds useful safeguards to your CI pipeline.
 
 
