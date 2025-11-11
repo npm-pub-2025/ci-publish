@@ -53,7 +53,7 @@ Add **required reviewers**. This means your publish workflow will need approval 
 
 In your npm account, go to **Access Tokens** and create a new **Granular Access Token**.
 
-- Keep *“Bypass 2FA”* unchecked.
+- Keep *“Bypass 2FA”* unchecked, if it is checked (the default for tokens created before Nov 5th 2025) be sure to uncheck it
 - Set an expiration date you think is reasonable.
 - Give it read/write access only to your package.
 
