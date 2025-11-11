@@ -14,20 +14,20 @@ If you haven’t read the [Publishing Locally](https://github.com/npm-pub-2025/l
 
 The most important security steps are:
 
-- Create a GitHub Environment for publishing.
-- Add required reviewers for approval to help prevent accidental or unauthorized releases.
-- Use a Granular Access Token (GAT) with 2FA required.
+- Create a GitHub Environment for publishing
+- Add required reviewers for approval to help prevent accidental or unauthorized releases
+- Use a Granular Access Token (GAT) with 2FA required
 - Store your token as a GitHub Environment secret
-- Set up a workflow with permissions and OTP input.
-- Approve and provide your OTP when publishing. This step depends on a trusted third-party service.
+- Set up a workflow with permissions and OTP input
+- Approve and provide your OTP when publishing. This step depends on a trusted third-party service
 
 
 ## Prerequisites
 
 Before starting, make sure you have:
-- A GitHub repository with Actions enabled.
-- An npm account with 2FA turned on.
-- A trusted team for approvals.
+- A GitHub repository with Actions enabled
+- An npm account with 2FA turned on
+- A trusted team for approvals
 
 
 ## Setup Steps
@@ -53,8 +53,8 @@ Add **required reviewers**. This means your publish workflow will need approval 
 In your npm account, go to **Access Tokens** and create a new **Granular Access Token**.
 
 - Keep *“Bypass 2FA”* unchecked, if it is checked (the default for tokens created before Nov 5th 2025) be sure to uncheck it
-- Set an expiration date you think is reasonable.
-- Give it read/write access only to your package.
+- Set an expiration date you think is reasonable
+- Give it read/write access only to your package
 
 ![GAT Scope](assets/gat-scope.png)
 
@@ -114,8 +114,8 @@ Then use it in the publish command:
 This workflow uses a manual `workflow_dispatch` trigger. You can change it later if needed.
 
 To publish:
-1. Go to **Actions → Publish** in GitHub.
-2. Click **Run workflow**.
+1. Go to **Actions → Publish** in GitHub
+2. Click **Run workflow**
 
 ![Run workflow](assets/run-workflow.png)
 
@@ -134,15 +134,15 @@ Go to the link, enter your OTP, and the publish will finish.
 ## This Example is Opinionated
 
 This setup reflects one way of publishing safely from CI. You can change details to fit your project’s needs. For example:
-- You might skip reviewers for small teams or solo maintainers.
-- You can use a different OTP action if you prefer.
-- The publish order (npm first or GitHub first) is up to you, use the appropriate trigger for your workflow (just never `pull_request_target`).
-- For extra security, consider using [harden-runner](https://github.com/step-security/harden-runner) or a similar endpoint protection tool for GitHub Actions runners. It helps control egress traffic and adds useful safeguards to your CI pipeline.
+- You might skip reviewers for small teams or solo maintainers
+- You can use a different OTP action if you prefer
+- The publish order (npm first or GitHub first) is up to you, use the appropriate trigger for your workflow (just never `pull_request_target`)
+- For extra security, consider using [harden-runner](https://github.com/step-security/harden-runner) or a similar endpoint protection tool for GitHub Actions runners. It helps control egress traffic and adds useful safeguards to your CI pipeline
 
 
 ## Tips
 
-- Use CI publishing only when you need it. Local publishing is simpler and safer for most projects.
+- Use CI publishing only when you need it. Local publishing is simpler and safer for most projects
 - Check your GitHub Actions dependencies often. Specifically ensure any [pinned to commits are not from a fork](https://www.chainguard.dev/unchained/what-the-fork-imposter-commits-in-github-actions-and-ci-cd)
 
 **Multi-Releasers Strategy**
@@ -150,8 +150,8 @@ This setup reflects one way of publishing safely from CI. You can change details
 When multiple team members are responsible for publishing releases, each person should create their own personal npm token before running a release.
 
 They should then:
-1. Temporarily add their token to the CI environment or GitHub secrets to perform the release.
-2. Remove the token from both npm and the CI/GitHub secrets immediately after the release to maintain security.
+1. Temporarily add their token to the CI environment or GitHub secrets to perform the release
+2. Remove the token from both npm and the CI/GitHub secrets immediately after the release to maintain security
 
 This approach is more secure and auditable than using a shared bot account with publish permissions, as it provides clear attribution in security logs and incident investigations.
 
